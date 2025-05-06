@@ -39,39 +39,6 @@ def ecosnap_camera():
         image = Image.open(uploaded_file)
         st.image(image, caption="Uploaded Image", use_container_width=True)
 
-        # Simulate filters or prompts using a selectbox - user can choose a filter to preview
-        filter_option = st.selectbox("Choose a filter overlay to preview (simulated)", ["None", "Green Tint", "Black & White", "Sepia"])
-
-        # Simple filter simulation
-        if filter_option != "None":
-            img = image.convert("RGB")
-            if filter_option == "Green Tint":
-                r, g, b = img.split()
-                g = g.point(lambda i: i * 1.5)
-                filtered = Image.merge('RGB', (r, g, b))
-                st.image(filtered, caption=f"Filter applied: {filter_option}", use_container_width=True)
-            elif filter_option == "Black & White":
-                filtered = img.convert("L")
-                st.image(filtered, caption=f"Filter applied: {filter_option}", use_container_width=True)
-            elif filter_option == "Sepia":
-                sepia_img = img.convert("RGB")
-                width, height = sepia_img.size
-                pixels = sepia_img.load()  # create the pixel map
-
-                for py in range(height):
-                    for px in range(width):
-                        r, g, b = sepia_img.getpixel((px, py))
-
-                        tr = int(0.393 * r + 0.769 * g + 0.189 * b)
-                        tg = int(0.349 * r + 0.686 * g + 0.168 * b)
-                        tb = int(0.272 * r + 0.534 * g + 0.131 * b)
-
-                        tr = min(255, tr)
-                        tg = min(255, tg)
-                        tb = min(255, tb)
-
-                        pixels[px, py] = (tr, tg, tb)
-                st.image(sepia_img, caption=f"Filter applied: {filter_option}", use_container_width=True)
 
         # Simulate submit button for upload
         if st.button("Submit Eco-Friendly Action"):
