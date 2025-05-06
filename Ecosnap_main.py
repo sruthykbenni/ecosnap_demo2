@@ -1,12 +1,12 @@
 import streamlit as st
-from AI_analyzer import AI_analyzer
-from CSR_dashboard import CSR_dashboard
-from CO2_estimator import CO2_estimator
-from Ecosnap_camera import Ecosnap_camera
-from Leaderboards import Leaderboards
-from Personal_dashboard import Personal_dashboard
-from Reward_center import Reward_center
-from Streak_tracker import Streak_tracker
+from AI_analyzer import ai_analyzer
+from CSR_dashboard import csr_dashboard
+from CO2_estimator import co2_estimator
+from Ecosnap_camera import ecosnap_camera
+from Leaderboards import leaderboards
+from Personal_dashboard import personal_dashboard
+from Reward_center import reward_center
+from Streak_tracker import streak_tracker
 
 # Main function to display the app
 def main():
