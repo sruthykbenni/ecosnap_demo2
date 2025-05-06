@@ -18,7 +18,7 @@ def get_location():
 
 # EcoSnap Camera Feature
 def ecosnap_camera():
-    st.title("🌏 EcoSnap Camera")
+    st.title("🌎 EcoSnap Camera")
     st.markdown("""
     ### Capture Your Eco-Friendly Action 
     Please upload an image of your eco-friendly action (e.g., using public transport, carrying reusable items, cycling, composting, or participating in tree planting drives).
