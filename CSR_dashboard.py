@@ -33,7 +33,7 @@ df = pd.DataFrame(user_data_list)
 def calculate_participation(df, challenge_name):
     return round((df['participation'].apply(lambda x: x.get(challenge_name, False)).sum() / len(df)) * 100, 2)
 
-def display_csr_dashboard():
+def csr_dashboard():
     st.title("🌏 CSR Partner Dashboard")
 
     # 1. Total Carbon Savings
