@@ -4,7 +4,7 @@ import random
 import pandas as pd
 
 # Generate expanded user dataset with streak history for the graph
-def generate_users(n=30):
+def generate_users(n=50):
     regions = ['Trivandrum', 'Kollam', 'Kochi', 'Alappuzha', 'Global']
     teams = ['GreenWizards', 'EcoStars', 'PlanetSavers', 'CarbonCutters']
     users = {}
