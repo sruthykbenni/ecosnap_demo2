@@ -2,7 +2,7 @@ import streamlit as st
 from AI_analyzer import AI_analyzer
 from CSR_dashboard import CSR_dashboard
 from CO2_estimator import CO2_estimator
-from Eco_snap_camera import Eco_snap_camera
+from Ecosnap_camera import Ecosnap_camera
 from Leaderboards import Leaderboards
 from Personal_dashboard import Personal_dashboard
 from Reward_center import Reward_center
@@ -52,7 +52,7 @@ def main():
 
     # Eco Snap Camera Page
     elif choice == "📸 Eco Snap Camera":
-        Eco_snap_camera()
+        Ecosnap_camera()
 
     # Leaderboards Page
     elif choice == "🏆 Leaderboards":
