@@ -1,3 +1,16 @@
+import streamlit as st
+import pandas as pd
+
+# Simulated user data for demonstration
+user_data = [
+    {"username": "EcoWarrior", "total_co2_saved": 50, "streak_count": 10, "region": "Global"},
+    {"username": "GreenThumb", "total_co2_saved": 40, "streak_count": 5, "region": "Trivandrum"},
+    {"username": "SustainableSam", "total_co2_saved": 30, "streak_count": 15, "region": "Kollam"},
+    {"username": "PlanetProtector", "total_co2_saved": 25, "streak_count": 7, "region": "Kollam"},
+    {"username": "EcoFriendly", "total_co2_saved": 20, "streak_count": 3, "region": "Global"},
+    {"username": "TreeHugger", "total_co2_saved": 15, "streak_count": 12, "region": "Trivandrum"},
+]
+
 def display_leaderboard(filter_option):
     """
     Display the leaderboard based on the selected filter option.
@@ -35,3 +48,12 @@ def display_leaderboard(filter_option):
 
     greenest_user = filtered_df.loc[filtered_df['total_co2_saved'].idxmax()]
     st.write(f"🌱 **Greenest User of the Month:** {greenest_user['username']} with {greenest_user['total_co2_saved']} kg CO₂ saved!")
+
+# Main function for the Leaderboard
+def leaderboard():
+    st.title("Leaderboard: Compete and Motivate")
+
+    filter_option = st.selectbox("Select Leaderboard Filter", ["Global", "Regional", "Friends", "Corporate Teams"])
+    
+    if st.button("Show Leaderboard"):
+        display_leaderboard(filter_option)
