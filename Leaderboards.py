@@ -40,7 +40,7 @@ def display_leaderboard(filter_option):
 
     # Display the leaderboard
     st.write("### Leaderboard")
-    st.dataframe(filtered_df[['Rank', 'username', 'total_co2_saved', 'streak_count']])
+    st.dataframe(filtered_df[['Rank 🏅', 'Username 👾', 'Total Co2 saved ✅', 'Streak count 🔥']])
 
     # Highlight gamified metrics
     top_streak_holder = filtered_df.loc[filtered_df['streak_count'].idxmax()]
@@ -52,7 +52,7 @@ def display_leaderboard(filter_option):
 
 # Main function for the Leaderboard
 def leaderboard():
-    st.title("Leaderboard: Compete and Motivate")
+    st.title("Leaderboard: Compete and Motivate 🎯")
 
     filter_option = st.selectbox("Select Leaderboard Filter", ["Global", "Regional", "Friends", "Corporate Teams"])
     
