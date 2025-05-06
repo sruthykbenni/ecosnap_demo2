@@ -2,6 +2,9 @@ streamlit
 pandas
 numpy
 matplotlib
-tensorflow
 scikit-learn
-plotly
+tensorflow
+opencv-python
+Pillow
+geopy
+requests
