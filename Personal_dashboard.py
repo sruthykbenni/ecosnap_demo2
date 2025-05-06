@@ -25,7 +25,7 @@ user_data = {
 }
 
 def display_personal_dashboard():
-    st.title(f"{user_data['username']}'s Personal Dashboard")
+    st.title(f"{user_data['username']}'s Personal Dashboard 📈")
 
     # CO₂ Savings Summary
     st.subheader("CO₂ Savings Summary")
@@ -34,7 +34,7 @@ def display_personal_dashboard():
     st.write(f"**Monthly Savings:** {user_data['monthly_savings']} kg")
 
     # Historical Activity
-    st.subheader("Historical Eco-Snap Activity")
+    st.subheader("Historical Eco-Snap Activity ")
     historical_df = pd.DataFrame({
         "Date": user_data["historical_activity"]["dates"],
         "Savings (kg)": user_data["historical_activity"]["savings"]
@@ -42,7 +42,7 @@ def display_personal_dashboard():
     st.line_chart(historical_df.set_index("Date"))
 
     # Streak Status and Milestones
-    st.subheader("Streak Status")
+    st.subheader("Streak Status 🔥")
     st.write(f"Current Streak: {user_data['streak_count']} day(s)")
     st.write("Achieved Milestones: " + ", ".join(map(str, user_data["milestones"])))
 
@@ -52,7 +52,7 @@ def display_personal_dashboard():
     st.bar_chart(category_df.set_index("Category"))
 
     # Comparison with Regional/Global Averages
-    st.subheader("Comparison with Averages")
+    st.subheader("Comparison with Averages ")
     st.write(f"Your Total CO₂ Savings: {user_data['monthly_savings']} kg")
     st.write(f"Regional Average: {user_data['regional_average']} kg")
     st.write(f"Global Average: {user_data['global_average']} kg")
@@ -61,7 +61,7 @@ def display_personal_dashboard():
     fig, ax = plt.subplots()
     averages = [user_data['monthly_savings'], user_data['regional_average'], user_data['global_average']]
     labels = ['Your Savings', 'Regional Average', 'Global Average']
-    ax.bar(labels, averages, color=['blue', 'orange', 'green'])
+    ax.bar(labels, averages, color=['dark green', 'mint green', 'green'])
     ax.set_ylabel('CO₂ Savings (kg)')
     ax.set_title('Comparison of CO₂ Savings')
     st.pyplot(fig)
