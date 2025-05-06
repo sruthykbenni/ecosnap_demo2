@@ -61,24 +61,29 @@ def check_milestones(user):
             st.success(f"🎉 {user['user_id']} reached a streak of {milestone} days and earned a badge!")
 
 def display_streak(user):
-    st.markdown(f"## {user['user_id']}")
-    st.markdown(f"**🔥 Current Streak:** {user['streak_count']} day(s)", unsafe_allow_html=True)
-    
+    st.header(user['user_id'])
+
+    st.subheader("🔥 Current Streak")
+    st.success(f"{user['streak_count']} day(s)")
+
     if user['last_action_date']:
         st.write(f"📅 Last Action Date: {user['last_action_date'].strftime('%Y-%m-%d')}")
 
     # Streak history line chart
-    streak_df = pd.DataFrame({
-        "Date": user["history_dates"],
-        "Streak": user["streak_history"]
-    }).set_index("Date")
-    
-    st.subheader("📈 Weekly Streak History")
-    st.line_chart(streak_df)
+    if user.get("history_dates") and user.get("streak_history"):
+        streak_df = pd.DataFrame({
+            "Date": user["history_dates"],
+            "Streak": user["streak_history"]
+        }).set_index("Date")
 
+        st.subheader("📈 Weekly Streak History")
+        st.line_chart(streak_df)
+
+    # Badges earned
     if user["badges"]:
-        st.markdown("🏅 **Badges Earned:**")
-        st.write(", ".join([f"{badge} days" for badge in user["badges"]]))
+        st.subheader("🏅 Badges Earned")
+        for badge in user["badges"]:
+            st.markdown(f"- **{badge} days** badge")
 
 def streak_tracker():
     st.title("🌏 Eco Action Streak Tracker")
