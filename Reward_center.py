@@ -37,7 +37,7 @@ def reward_center():
         st.info("🎉 You've unlocked new rewards! Redeem them now!")
         
     # Display available rewards
-    st.subheader("Available Rewards")
+    st.subheader("⭐ Available Rewards")
     if user_data["available_rewards"]:
         for reward in user_data["available_rewards"]:
             st.write(f"- {reward}")
@@ -53,7 +53,7 @@ def reward_center():
             st.success(f"Reward '{reward_to_redeem}' redeemed successfully!")
     
     # Display redeemed rewards
-    st.subheader("Redeemed Rewards")
+    st.subheader("🌟 Redeemed Rewards")
     if user_data["redeemed_rewards"]:
         for reward in user_data["redeemed_rewards"]:
             st.write(f"✅ {reward}")
