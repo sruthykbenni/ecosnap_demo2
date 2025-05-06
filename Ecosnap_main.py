@@ -29,11 +29,11 @@ def main():
     selection = st.sidebar.radio("Choose a feature:", list(PAGES.keys()))
 
     if selection == "🏠 Home":
-    st.title("Welcome to EcoSnap 🌱")
-    st.markdown("""
+      st.title("Welcome to EcoSnap 🌱")
+      st.markdown("""
         **EcoSnap** is your eco-friendly tracking app! 🌍  
         Take action, track your savings, earn rewards, and compete on the leaderboard! 💚
-    """)
+        """)
 
     else:
         PAGES[selection]()  # Call the selected function
