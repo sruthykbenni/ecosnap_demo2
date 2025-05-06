@@ -17,7 +17,7 @@ def get_location():
     return None
 
 # EcoSnap Camera Feature
-def eco_snap_camera():
+def ecosnap_camera():
     st.title("EcoSnap Camera")
     st.markdown("""
     ### Capture Your Eco-Friendly Action
@@ -87,4 +87,4 @@ def eco_snap_camera():
 
 # Run the EcoSnap Camera feature
 if __name__ == "__main__":
-    eco_snap_camera()
+    ecosnap_camera()
