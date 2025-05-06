@@ -32,6 +32,10 @@ def reward_center():
 
     st.write(f"Total CO₂ Saved: {user_data['total_co2_saved']:.2f} kg")
 
+    # Notification example
+    if user_data["available_rewards"]:
+        st.info("🎉 You've unlocked new rewards! Redeem them now!")
+        
     # Display available rewards
     st.subheader("Available Rewards")
     if user_data["available_rewards"]:
@@ -56,9 +60,6 @@ def reward_center():
     else:
         st.write("No rewards redeemed yet.")
 
-    # Notification example
-    if user_data["available_rewards"]:
-        st.info("🎉 You've unlocked new rewards! Redeem them now!")
 
 if __name__ == "__main__":
     reward_center()
