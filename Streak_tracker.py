@@ -84,14 +84,14 @@ def display_streak(user):
     st.line_chart(df)
 
 def streak_tracker():
-    st.title("💪 Eco Action Streak Tracker")
+    st.title("🌏 Eco Action Streak Tracker")
 
     user_list = list(users.keys())
     selected_user = st.selectbox("Select a user", user_list)
 
     user = users[selected_user]
 
-    if st.button("✅ Record Eco-Friendly Action"):
+    if st.button("Record Eco-Friendly Action"):
         updated_streak = update_streak(user)
         st.success(f"Action recorded! Current streak is {updated_streak} day(s).")
 
