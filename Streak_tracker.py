@@ -2,6 +2,7 @@ import streamlit as st
 from datetime import datetime, timedelta
 import random
 import pandas as pd
+import altair as alt
 
 # Generate expanded user dataset with streak history
 def generate_users(n=30):
@@ -69,20 +70,42 @@ def display_streak(user):
     if user['last_action_date']:
         st.write(f"📅 Last Action Date: {user['last_action_date'].strftime('%Y-%m-%d')}")
 
-    # Streak history line chart
+    # Streak history chart with sorted data and milestone markers
     if user.get("history_dates") and user.get("streak_history"):
+        # Create DataFrame and sort chronologically
         streak_df = pd.DataFrame({
             "Date": user["history_dates"],
             "Streak": user["streak_history"]
-        }).set_index("Date")
+        })
+        streak_df["Date"] = pd.to_datetime(streak_df["Date"])
+        streak_df = streak_df.sort_values("Date")
 
-        st.subheader("📈 Weekly Streak History")
-        st.line_chart(streak_df)
+        # Altair line chart with milestone annotations
+        base = alt.Chart(streak_df).mark_line(point=True).encode(
+            x='Date:T',
+            y='Streak:Q',
+            tooltip=['Date:T', 'Streak:Q']
+        ).properties(title="📈 Weekly Streak History")
+
+        milestones = [m for m in user["milestones"] if m in user["streak_history"]]
+        milestone_df = streak_df[streak_df["Streak"].isin(milestones)]
+
+        if not milestone_df.empty:
+            milestone_points = alt.Chart(milestone_df).mark_point(color='orange', size=100).encode(
+                x='Date:T',
+                y='Streak:Q',
+                tooltip=alt.Tooltip('Streak:Q', title='Milestone Badge')
+            )
+            chart = base + milestone_points
+        else:
+            chart = base
+
+        st.altair_chart(chart, use_container_width=True)
 
     # Badges earned
     if user["badges"]:
         st.subheader("🏅 Badges Earned")
-        for badge in user["badges"]:
+        for badge in sorted(user["badges"]):
             st.markdown(f"- **{badge} days** badge")
 
 def streak_tracker():
