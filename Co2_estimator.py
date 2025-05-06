@@ -46,7 +46,7 @@ def display_co2_estimation(action, distance):
 
 # Main function for the CO₂ Estimator
 def co2_estimator():
-    st.title("🌎 CO₂ Savings Estimator")
+    st.title("🌏 CO₂ Savings Estimator")
 
     # Select action type
     action = st.selectbox("Select your eco-friendly action", list(CO2_SAVINGS.keys()))
