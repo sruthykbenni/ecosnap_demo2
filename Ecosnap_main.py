@@ -3,7 +3,7 @@ from AI_analyzer import ai_analyzer
 from CSR_dashboard import csr_dashboard
 from Co2_estimator import co2_estimator
 from Ecosnap_camera import ecosnap_camera
-from Leaderboards import leaderboards
+from Leaderboards import leaderboard
 from Personal_dashboard import personal_dashboard
 from Reward_center import reward_center
 from Streak_tracker import streak_tracker
@@ -27,7 +27,7 @@ def main():
         "📊 CSR Dashboard", 
         "🌍 CO2 Estimator", 
         "📸 Eco Snap Camera", 
-        "🏆 Leaderboards", 
+        "🏆 Leaderboard", 
         "📊 Personal Dashboard", 
         "🎁 Reward Center", 
         "🔥 Streak Tracker"
@@ -55,8 +55,8 @@ def main():
         Ecosnap_camera()
 
     # Leaderboards Page
-    elif choice == "🏆 Leaderboards":
-        Leaderboards()
+    elif choice == "🏆 Leaderboard":
+        Leaderboard()
 
     # Personal Dashboard Page
     elif choice == "📊 Personal Dashboard":
