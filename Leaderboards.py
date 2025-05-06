@@ -3,12 +3,12 @@ import pandas as pd
 
 # Simulated user data for demonstration
 user_data = [
-    {"username": "EcoWarrior", "total_co2_saved": 50, "streak_count": 10, "region": "Global"},
-    {"username": "GreenThumb", "total_co2_saved": 40, "streak_count": 5, "region": "Trivandrun"},
-    {"username": "SustainableSam", "total_co2_saved": 30, "streak_count": 15, "region": "Kollam"},
-    {"username": "PlanetProtector", "total_co2_saved": 25, "streak_count": 7, "region": "Kollam"},
-    {"username": "EcoFriendly", "total_co2_saved": 20, "streak_count": 3, "region": "Global"},
-    {"username": "TreeHugger", "total_co2_saved": 15, "streak_count": 12, "region": "Trivandrum"},
+    {"Username": "EcoWarrior", "Total Co2 saved": 50, "Streak count": 10, "Region": "Global"},
+    {"Username": "GreenThumb", "Total Co2 saved": 40, "Streak count": 5, "Region": "Trivandrun"},
+    {"Username": "SustainableSam", "Total Co2 saved": 30, "Streak count": 15, "Region": "Kollam"},
+    {"Username": "PlanetProtector", "Total Co2 saved": 25, "Streak count": 7, "Region": "Kollam"},
+    {"Username": "EcoFriendly", "Total Co2 saved": 20, "Streak count": 3, "Region": "Global"},
+    {"Username": "TreeHugger", "Total Co2 saved": 15, "Streak count": 12, "Region": "Trivandrum"},
 ]
 
 def display_leaderboard(filter_option):
@@ -25,8 +25,8 @@ def display_leaderboard(filter_option):
     if filter_option == "Global":
         filtered_df = df
     elif filter_option == "Regional":
-        region = st.selectbox("Select your region", df['region'].unique())
-        filtered_df = df[df['region'] == region]
+        region = st.selectbox("Select your region", df['Region'].unique())
+        filtered_df = df[df['Region'] == region]
     elif filter_option == "Friends":
         filtered_df = df  # Replace with actual friends filter logic
     elif filter_option == "Corporate Teams":
@@ -40,14 +40,14 @@ def display_leaderboard(filter_option):
 
     # Display the leaderboard
     st.write("### Leaderboard")
-    st.dataframe(filtered_df[['Rank 🏅', 'Username 👾', 'Total Co2 saved ✅', 'Streak count 🔥']])
+    st.dataframe(filtered_df[['Rank', 'Username', 'Total Co2 saved', 'Streak count']])
 
     # Highlight gamified metrics
     top_streak_holder = filtered_df.loc[filtered_df['streak_count'].idxmax()]
-    st.write(f"🏆 **Top Streak Holder:** {top_streak_holder['username']} with a streak of {top_streak_holder['streak_count']} days!")
+    st.write(f"🏆 **Top Streak Holder:** {top_streak_holder['Username']} with a streak of {top_streak_holder['Streak count']} days!")
 
     greenest_user = filtered_df.loc[filtered_df['total_co2_saved'].idxmax()]
-    st.write(f"🌱 **Greenest User of the Month:** {greenest_user['username']} with {greenest_user['total_co2_saved']} kg CO₂ saved!")
+    st.write(f"🌱 **Greenest User of the Month:** {greenest_user['Username']} with {greenest_user['Total Co2 saved']} kg CO₂ saved!")
 
 
 # Main function for the Leaderboard
