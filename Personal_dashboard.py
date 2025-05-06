@@ -61,7 +61,7 @@ def display_personal_dashboard():
     fig, ax = plt.subplots()
     averages = [user_data['monthly_savings'], user_data['regional_average'], user_data['global_average']]
     labels = ['Your Savings', 'Regional Average', 'Global Average']
-    ax.bar(labels, averages, color=['dark green', 'mint green', 'green'])
+    ax.bar(labels, averages, color=['#228B22', '#3CB371', '#98FB98'])
     ax.set_ylabel('CO₂ Savings (kg)')
     ax.set_title('Comparison of CO₂ Savings')
     st.pyplot(fig)
