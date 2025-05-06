@@ -116,10 +116,6 @@ def streak_tracker():
 
     user = users[selected_user]
 
-    if st.button("Record Eco-Friendly Action"):
-        updated_streak = update_streak(user)
-        st.success(f"Action recorded! {selected_user}'s current streak is {updated_streak} day(s).")
-
     display_streak(user)
 
 # Run the streak tracker
