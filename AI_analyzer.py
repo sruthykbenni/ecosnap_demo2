@@ -2,10 +2,12 @@ import streamlit as st
 import numpy as np
 import tensorflow as tf
 from PIL import Image
-import io
+import os
 
 # Load the TensorFlow Lite model
-def load_model(model_path):
+def load_model():
+    # Automatically finds the model path relative to this file
+    model_path = os.path.join(os.path.dirname(__file__), "model", "model.tflite")
     interpreter = tf.lite.Interpreter(model_path=model_path)
     interpreter.allocate_tensors()
     return interpreter
@@ -40,35 +42,28 @@ def display_classification_results(predicted_class, confidence_score):
         "Use of public transit",
         "Zero waste or composting activities"
     ]
-    
-    st.write("### Classification Results")
-    st.write(f"Predicted Action: {categories[predicted_class]}")
-    st.write(f"Confidence Score: {confidence_score:.2f}")
 
-    # Allow user to correct classification
-    correction = st.selectbox("Is this classification correct?", ["Yes", "No"])
+    st.markdown("### 🌱 Classification Results")
+    st.success(f"🟢 **Predicted Action:** {categories[predicted_class]}")
+    st.info(f"🔍 **Confidence Score:** {confidence_score:.2f}")
+
+    correction = st.selectbox("✅ Is this classification correct?", ["Yes", "No"])
     if correction == "No":
-        st.write("Please provide the correct action:")
-        correct_action = st.selectbox("Correct Action", categories)
-        st.write(f"Corrected Action: {correct_action}")
-        # Here you would implement logic to store the correction for future training
-        st.success("Thank you for your feedback! This will help improve the model.")
+        correct_action = st.selectbox("🔁 Please select the correct action:", categories)
+        st.warning(f"📌 You selected: {correct_action}")
+        st.success("🎉 Thank you! Your feedback helps improve the model.")
 
 # Main function for the AI Analyzer
 def ai_analyzer():
-    st.title("AI Analyzer: Classify Your Eco-Friendly Action")
-    
-    # Load the TensorFlow Lite model
-    model_path = "path/to/your/model.tflite"  # Update with your model path
-    interpreter = load_model(model_path)
+    st.title("🤖 AI Analyzer: Classify Your Eco-Friendly Action")
+    interpreter = load_model()
 
-    # File uploader for image input
-    uploaded_file = st.file_uploader("Upload an image of your eco-friendly action", type=['png', 'jpg', 'jpeg'])
+    uploaded_file = st.file_uploader("📤 Upload an image of your eco-friendly action", type=['png', 'jpg', 'jpeg'])
     
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
-        st.image(image, caption="Uploaded Image", use_column_width=True)
+        st.image(image, caption="📸 Uploaded Image", use_column_width=True)
 
-        if st.button("Analyze Image"):
+        if st.button("🔎 Analyze Image"):
             predicted_class, confidence_score = classify_image(interpreter, image)
             display_classification_results(predicted_class, confidence_score)
