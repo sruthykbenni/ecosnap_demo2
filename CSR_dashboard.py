@@ -83,4 +83,4 @@ def display_csr_dashboard():
 
 # Main app
 if __name__ == "__main__":
-    display_csr_dashboard()
+    csr_dashboard()
