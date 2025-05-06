@@ -52,7 +52,7 @@ def display_leaderboard(filter_option):
 
 # Main function for the Leaderboard
 def leaderboard():
-    st.title("Leaderboard: Compete and Motivate 🎯")
+    st.title("Leaderboard: Compete and Motivate")
 
     filter_option = st.selectbox("Select Leaderboard Filter", ["Global", "Regional", "Friends", "Corporate Teams"])
     
