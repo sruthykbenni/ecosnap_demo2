@@ -18,9 +18,9 @@ def get_location():
 
 # EcoSnap Camera Feature
 def ecosnap_camera():
-    st.title("EcoSnap Camera")
+    st.title("EcoSnap Camera 📷")
     st.markdown("""
-    ### Capture Your Eco-Friendly Action
+    ### Capture Your Eco-Friendly Action 
     Please upload an image of your eco-friendly action (e.g., using public transport, carrying reusable items, cycling, composting, or participating in tree planting drives).
     """)
 
@@ -37,7 +37,7 @@ def ecosnap_camera():
     if uploaded_file is not None:
         # Display uploaded image
         image = Image.open(uploaded_file)
-        st.image(image, caption="Uploaded Image", use_column_width=True)
+        st.image(image, caption="Uploaded Image", use_container_width=True)
 
         # Simulate filters or prompts using a selectbox - user can choose a filter to preview
         filter_option = st.selectbox("Choose a filter overlay to preview (simulated)", ["None", "Green Tint", "Black & White", "Sepia"])
@@ -49,10 +49,10 @@ def ecosnap_camera():
                 r, g, b = img.split()
                 g = g.point(lambda i: i * 1.5)
                 filtered = Image.merge('RGB', (r, g, b))
-                st.image(filtered, caption=f"Filter applied: {filter_option}", use_column_width=True)
+                st.image(filtered, caption=f"Filter applied: {filter_option}", use_container_width=True)
             elif filter_option == "Black & White":
                 filtered = img.convert("L")
-                st.image(filtered, caption=f"Filter applied: {filter_option}", use_column_width=True)
+                st.image(filtered, caption=f"Filter applied: {filter_option}", use_container_width=True)
             elif filter_option == "Sepia":
                 sepia_img = img.convert("RGB")
                 width, height = sepia_img.size
@@ -71,12 +71,13 @@ def ecosnap_camera():
                         tb = min(255, tb)
 
                         pixels[px, py] = (tr, tg, tb)
-                st.image(sepia_img, caption=f"Filter applied: {filter_option}", use_column_width=True)
+                st.image(sepia_img, caption=f"Filter applied: {filter_option}", use_container_width=True)
 
         # Simulate submit button for upload
         if st.button("Submit Eco-Friendly Action"):
             # Here backend upload and processing would happen
-            st.success("Image and metadata submitted successfully!")
+            st.success("Image and metadata submitted successfully! ✅
+")
             st.json({
                 "filename": uploaded_file.name,
                 "timestamp": timestamp.strftime('%Y-%m-%d %H:%M:%S'),
