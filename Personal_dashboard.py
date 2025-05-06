@@ -25,7 +25,7 @@ user_data = {
 }
 
 def display_personal_dashboard():
-    st.title(f"{user_data['username']}'s Personal Dashboard 📈")
+    st.title(f"🌎{user_data['username']}'s Personal Dashboard")
 
     # CO₂ Savings Summary
     st.subheader("CO₂ Savings Summary")
