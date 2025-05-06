@@ -76,8 +76,7 @@ def ecosnap_camera():
         # Simulate submit button for upload
         if st.button("Submit Eco-Friendly Action"):
             # Here backend upload and processing would happen
-            st.success("Image and metadata submitted successfully! ✅
-")
+            st.success("Image and metadata submitted successfully! ✅")
             st.json({
                 "filename": uploaded_file.name,
                 "timestamp": timestamp.strftime('%Y-%m-%d %H:%M:%S'),
