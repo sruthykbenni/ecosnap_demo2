@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random
 
-# Generate user data
+# Simulated user data generator
 def generate_users(n=50):
     regions = ['Trivandrum', 'Kollam', 'Kochi', 'Alappuzha', 'Global']
     teams = ['GreenWizards', 'EcoStars', 'PlanetSavers', 'CarbonCutters']
@@ -24,63 +24,67 @@ def generate_users(n=50):
             }
         }
         users.append(user)
-
     return users
 
 user_data_list = generate_users(50)
 df = pd.DataFrame(user_data_list)
 
+# Calculate participation %
 def calculate_participation(df, challenge_name):
     return round((df['participation'].apply(lambda x: x.get(challenge_name, False)).sum() / len(df)) * 100, 2)
 
 def csr_dashboard():
     st.title("🌏 CSR Partner Dashboard")
 
-    # 1. Total Carbon Savings
-    total_savings = df['total_co2_saved'].sum()
-    st.subheader("Total Carbon Savings Contributed by Affiliated Users")
-    st.write(f"**Total Carbon Savings:** {total_savings} kg")
+    # Team selector
+    teams = df['team'].unique().tolist()
+    selected_team = st.selectbox("Select Corporate Team", ["All Teams"] + teams)
 
-    # 2. Participation Rates in Sponsored Challenges
-    st.subheader("Participation Rates in Sponsored Challenges")
+    # Filter data based on team selection
+    team_df = df if selected_team == "All Teams" else df[df['team'] == selected_team]
+
+    st.markdown(f"### 📊 Dashboard for: **{selected_team}**")
+
+    # 1. Total Carbon Savings
+    total_savings = team_df['total_co2_saved'].sum()
+    st.subheader("Total Carbon Savings")
+    st.write(f"**{total_savings} kg CO₂** saved by users in this team.")
+
+    # 2. Participation Rates
+    st.subheader("Participation in Sponsored Challenges")
     challenges = ["Public Transport Week", "Plastic Free Challenge", "Tree Planting Month"]
     participation_rates = {
-        challenge: calculate_participation(df, challenge) for challenge in challenges
+        challenge: calculate_participation(team_df, challenge) for challenge in challenges
     }
-
     participation_df = pd.DataFrame(participation_rates.items(), columns=["Challenge", "Participation Rate (%)"])
     st.bar_chart(participation_df.set_index("Challenge"))
 
-    # 3. ESG & SDG Reporting Placeholder
-    st.subheader("Impact Reports for ESG and SDG Reporting")
+    # 3. ESG and SDG Reporting
+    st.subheader("Impact Highlights (ESG & SDG)")
     st.markdown("""
-    - **SDG 13 - Climate Action**: Emissions reduction through community engagement.
-    - **SDG 11 - Sustainable Cities**: Public transport adoption boosted.
-    - **SDG 12 - Responsible Consumption**: Plastic-free efforts by users.
+    - 🌍 **SDG 13 - Climate Action**: CO₂ savings contribute directly to reducing emissions.
+    - 🚌 **SDG 11 - Sustainable Cities**: Public transport participation boosts city sustainability.
+    - 🌿 **SDG 12 - Responsible Consumption**: Plastic-free efforts reduce waste.
     """)
 
-    # 4. Brand Visibility (Static example)
-    st.subheader("Brand Visibility Analytics")
-    brand_visibility = {
-        "logo_impressions": 15000,
-        "mentions": 300
-    }
-    st.write(f"**Logo Impressions:** {brand_visibility['logo_impressions']}")
-    st.write(f"**Mentions:** {brand_visibility['mentions']}")
+    # 4. Brand Visibility (static example)
+    st.subheader("Brand Visibility Metrics")
+    brand_visibility = {"logo_impressions": 15000, "mentions": 300}
+    st.write(f"Logo Impressions: {brand_visibility['logo_impressions']}")
+    st.write(f"Mentions: {brand_visibility['mentions']}")
 
     # Bar chart for brand visibility
     fig, ax = plt.subplots()
-    ax.bar(brand_visibility.keys(), brand_visibility.values(), color=['skyblue', 'lightgreen'])
-    ax.set_ylabel("Count")
-    ax.set_title("Brand Visibility Metrics")
+    ax.bar(brand_visibility.keys(), brand_visibility.values(), color=['#4CAF50', '#2196F3'])
+    ax.set_title("Brand Visibility")
     st.pyplot(fig)
 
-    # 5. Sponsor a Custom Challenge
+    # 5. Sponsor Custom Challenge
     st.subheader("Sponsor a Custom Challenge")
     challenge_name = st.text_input("Enter Challenge Name")
     if st.button("Sponsor Challenge"):
-        st.success(f"🎉 Challenge '{challenge_name}' has been successfully sponsored!")
+        st.success(f"🎉 Challenge '{challenge_name}' has been sponsored for **{selected_team}**!")
 
-# Main app
+# Run the dashboard
 if __name__ == "__main__":
     csr_dashboard()
