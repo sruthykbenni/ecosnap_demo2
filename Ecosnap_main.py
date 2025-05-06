@@ -1,74 +1,39 @@
 import streamlit as st
+
+# Import all module functions
 from AI_analyzer import ai_analyzer
 from CSR_dashboard import csr_dashboard
 from Co2_estimator import co2_estimator
-from Ecosnap_camera import ecosnap_camera
-from Leaderboards import leaderboard
+from Eco_snap_camera import eco_snap_camera
+from Leaderboards import leaderboards
 from Personal_dashboard import personal_dashboard
 from Reward_center import reward_center
 from Streak_tracker import streak_tracker
 
-# Main function to display the app
+# Sidebar Navigation with emojis
+PAGES = {
+    "🏠 Home": "home",
+    "📷 EcoSnap Camera": eco_snap_camera,
+    "📊 CO₂ Estimator": co2_estimator,
+    "🧠 AI Analyzer": ai_analyzer,
+    "📈 Personal Dashboard": personal_dashboard,
+    "🏆 Leaderboards": leaderboards,
+    "🎁 Reward Center": reward_center,
+    "🔥 Streak Tracker": streak_tracker,
+    "🌱 CSR Dashboard": csr_dashboard
+}
+
 def main():
-    st.set_page_config(page_title="EcoSnap App", page_icon="🌍", layout="wide")
-    
-    # App title
-    st.title("Welcome to EcoSnap 🌱")
-    st.markdown("""
-        **EcoSnap** is your eco-friendly tracking app! 🌍  
-        Take action, track your savings, earn rewards, and compete on the leaderboard! 🌿
-    """)
+    st.set_page_config(page_title="EcoSnap 🌍", layout="wide")
+    st.sidebar.title("🌿 EcoSnap Navigation")
+    selection = st.sidebar.radio("Choose a feature:", list(PAGES.keys()))
 
-    # Sidebar navigation
-    st.sidebar.title("Navigation 🧭")
-    choice = st.sidebar.radio("Choose a Feature", [
-        "🏠 Home", 
-        "🤖 AI Analyzer", 
-        "📊 CSR Dashboard", 
-        "🌍 CO2 Estimator", 
-        "📸 Eco Snap Camera", 
-        "🏆 Leaderboard", 
-        "📊 Personal Dashboard", 
-        "🎁 Reward Center", 
-        "🔥 Streak Tracker"
-    ])
+    if selection == "🏠 Home":
+        st.title("🌎 Welcome to EcoSnap!")
+        st.markdown("Make your eco-friendly actions count! 🌱\n\nChoose a feature from the left panel to get started.")
+        st.image("https://images.unsplash.com/photo-1501004318641-b39e6451bec6", use_column_width=True)
+    else:
+        PAGES[selection]()  # Call the selected function
 
-   # Home Page
-    if choice == "🏠 Home":
-        st.subheader("Welcome to EcoSnap!")
-        st.markdown("This app helps you track your eco-friendly actions, estimate CO2 savings, and stay motivated to make a positive impact on the planet. 🌍 Explore the different features to learn more about your eco contributions! 🌱")
-    
-    # AI Analyzer Page
-    elif choice == "🤖 AI Analyzer":
-        AI_analyzer()
-
-    # CSR Dashboard Page
-    elif choice == "📊 CSR Dashboard":
-        CSR_dashboard()
-
-    # CO2 Estimator Page
-    elif choice == "🌍 CO2 Estimator":
-        CO2_estimator()
-
-    # Eco Snap Camera Page
-    elif choice == "📸 Eco Snap Camera":
-        Ecosnap_camera()
-
-    # Leaderboards Page
-    elif choice == "🏆 Leaderboard":
-        Leaderboard()
-
-    # Personal Dashboard Page
-    elif choice == "📊 Personal Dashboard":
-        Personal_dashboard()
-
-    # Reward Center Page
-    elif choice == "🎁 Reward Center":
-        Reward_center()
-
-    # Streak Tracker Page
-    elif choice == "🔥 Streak Tracker":
-        Streak_tracker()
-# Run the main function
 if __name__ == "__main__":
     main()
