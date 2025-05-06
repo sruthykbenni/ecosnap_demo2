@@ -39,7 +39,7 @@ def display_personal_dashboard():
         "Date": user_data["historical_activity"]["dates"],
         "Savings (kg)": user_data["historical_activity"]["savings"]
     })
-    st.line_chart(historical_df.set_index("Date"))
+    st.line_chart(historical_df.set_index("Date"), color="green")
 
     # Streak Status and Milestones
     st.subheader("Streak Status 🔥")
@@ -49,7 +49,7 @@ def display_personal_dashboard():
     # Breakdown of Carbon Savings by Category
     st.subheader("Breakdown of Carbon Savings by Category")
     category_df = pd.DataFrame(user_data["savings_by_category"].items(), columns=["Category", "Savings (kg)"])
-    st.bar_chart(category_df.set_index("Category"))
+    st.bar_chart(category_df.set_index("Category"), color="green")
 
     # Comparison with Regional/Global Averages
     st.subheader("Comparison with Averages ")
