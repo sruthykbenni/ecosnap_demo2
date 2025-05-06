@@ -62,7 +62,8 @@ def check_milestones(user):
 
 def display_streak(user):
     st.markdown(f"## {user['user_id']}")
-    st.markdown(f"""<div style='font-size:28px; font-weight:bold; color:green;'>🔥 Current Streak: {user['streak_count']} day(s)</div>""", unsafe_allow_html=True)
+    st.markdown(f"**🔥 Current Streak:** {user['streak_count']} day(s)", unsafe_allow_html=True)
+    
     if user['last_action_date']:
         st.write(f"📅 Last Action Date: {user['last_action_date'].strftime('%Y-%m-%d')}")
 
