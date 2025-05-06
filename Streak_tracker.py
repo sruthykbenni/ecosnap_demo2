@@ -59,7 +59,7 @@ def display_streak(user):
         st.write(", ".join([f"{badge} days" for badge in user["badges"]]))
 
 def streak_tracker():
-    st.title("💪 Eco Action Streak Tracker")
+    st.title("🌏 Eco Action Streak Tracker")
 
     user_list = list(users.keys())
     selected_user = st.selectbox("Select a user", user_list)
