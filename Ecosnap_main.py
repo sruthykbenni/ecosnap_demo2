@@ -4,8 +4,8 @@ import streamlit as st
 from AI_analyzer import ai_analyzer
 from CSR_dashboard import csr_dashboard
 from Co2_estimator import co2_estimator
-from Eco_snap_camera import eco_snap_camera
-from Leaderboards import leaderboards
+from Ecosnap_camera import ecosnap_camera
+from Leaderboards import leaderboard
 from Personal_dashboard import personal_dashboard
 from Reward_center import reward_center
 from Streak_tracker import streak_tracker
@@ -13,11 +13,11 @@ from Streak_tracker import streak_tracker
 # Sidebar Navigation with emojis
 PAGES = {
     "🏠 Home": "home",
-    "📷 EcoSnap Camera": eco_snap_camera,
+    "📷 EcoSnap Camera": ecosnap_camera,
     "📊 CO₂ Estimator": co2_estimator,
     "🧠 AI Analyzer": ai_analyzer,
     "📈 Personal Dashboard": personal_dashboard,
-    "🏆 Leaderboards": leaderboards,
+    "🏆 Leaderboards": leaderboard,
     "🎁 Reward Center": reward_center,
     "🔥 Streak Tracker": streak_tracker,
     "🌱 CSR Dashboard": csr_dashboard
